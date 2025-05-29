@@ -1,26 +1,26 @@
 const initialCards = [
-    {
-      name: "Архыз",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-    },
-    {
-      name: "Челябинская область",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-    },
-    {
-      name: "Иваново",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-    },
-    {
-      name: "Камчатка",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-    },
-    {
-      name: "Холмогорский район",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-    },
-    {
-      name: "Байкал",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-    }
+  {
+    name: 'Амстердам',
+    link: '../images/cards_images/amsterdam.jpeg',
+  },
+  {
+    name: 'Антверпен',
+    link: '../images/cards_images/antwerpen.jpeg',
+  },
+  {
+    name: 'Стамбул',
+    link: '../images/cards_images/istanbul.jpeg',
+  },
+  {
+    name: 'Калининградская область',
+    link: '../images/cards_images/kaliningrad.jpeg',
+  },
+  {
+    name: 'Париж',
+    link: '../images/cards_images/paris.jpeg',
+  },
+  {
+    name: 'Рига',
+    link: '../images/cards_images/riga.jpeg',
+  },
 ];
