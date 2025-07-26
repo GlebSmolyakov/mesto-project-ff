@@ -9,6 +9,22 @@
   padding: 34px 36px;
 }
 
+.popup__content-avatar {
+  min-height: 272px;
+}
+
+.popup_type-confirm .popup__content {
+  min-height: 181px;
+}
+
+.popup_type-confirm .popup__content .popup__form {
+  margin-top: 0;
+}
+
+.popup_type-confirm .popup__content .popup__form .button {
+  margin-top: 38px;
+}
+
 @media screen and (max-width: 568px) {
   .popup__content {
     width: 100%;

@@ -1,6 +1,6 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin'); // подключите плагин
-const { CleanWebpackPlugin } = require('clean-webpack-plugin'); // подключили плагин
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
@@ -10,12 +10,12 @@ module.exports = {
         filename: 'main.js',
         publicPath: ''
     },
-    mode: 'development', // добавили режим разработчика
+    mode: 'development',
     devServer: {
-        static: path.resolve(__dirname, './dist'), // путь, куда "смотрит" режим разработчика
-        compress: true, // это ускорит загрузку в режиме разработки
-        port: 8080, // порт, чтобы открывать сайт по адресу localhost:8080, но можно поменять порт
-        open: true // сайт будет открываться сам при запуске npm run dev
+        static: path.resolve(__dirname, './dist'),
+        compress: true,
+        port: 8080,
+        open: true
     },
     module: {
         rules: [
@@ -29,15 +29,11 @@ module.exports = {
                 type: 'asset/resource'
             },
             {
-                // применять это правило только к CSS-файлам
                 test: /\.css$/,
-                // при обработке этих файлов нужно использовать
-                // MiniCssExtractPlugin.loader и css-loader
                 use: [MiniCssExtractPlugin.loader, {
                     loader: 'css-loader',
                     options: { importLoaders: 1 }
                 },
-                    // Добавьте postcss-loader
                     'postcss-loader']
             },
         ]
@@ -48,6 +44,6 @@ module.exports = {
             template: 'src/index.html'
         }),
         new CleanWebpackPlugin(),
-        new MiniCssExtractPlugin() // подключение плагина для объединения файлов
+        new MiniCssExtractPlugin()
     ]
 }
