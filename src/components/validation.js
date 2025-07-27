@@ -1,5 +1,3 @@
-// validation.js
-
 function showError(inputElement, errorMessage, config) {
     const errorElement = inputElement.form.querySelector(`#${inputElement.id}-error`);
     if (!errorElement) return;

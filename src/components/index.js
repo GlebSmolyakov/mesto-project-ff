@@ -1,5 +1,5 @@
 //@todo импорт модулей
-import {deleteCard, likeCard, createCard, setDeleteCardHandler} from "./card";
+import {deleteCard, likeCard, createCard} from "./card";
 import {openPopup, closePopup, closePopupsOverlay} from "./modal.js";
 import '../pages/index.css';
 import logo from '../images/logo.svg';
@@ -157,7 +157,7 @@ function createNewCard(evt) {
 
   addNewCard(name, link)
       .then((newCardData) => {
-        const newCard = createCard(newCardData, deleteCard, likeCard, processCardImage, userId);
+        const newCard = createCard(newCardData, deleteCard, likeCard, processCardImage, userId, openConfirmPopup);
         placesList.prepend(newCard);
         popupFormAdd.reset();
         closePopup(popupAdd);
@@ -197,11 +197,11 @@ popupNewAvatarForm.addEventListener('submit', function (evt) {
 let cardIdDelete = null;
 let cardElementDelete = null;
 
-setDeleteCardHandler((cardId, cardElement) => {
-  cardIdDelete = cardId;
-  cardElementDelete = cardElement;
-  openPopup(popupDeleteImg);
-});
+function openConfirmPopup(cardId, cardElement) {
+    cardIdDelete = cardId;
+    cardElementDelete = cardElement;
+    openPopup(popupDeleteImg);
+}
 
 popupDeleteImg.addEventListener('submit', (evt) => {
   evt.preventDefault();
@@ -225,10 +225,10 @@ Promise.all([getUserInfo(), getCard()])
 
       popupProfileTitle.textContent = userData.name;
       popupProfileDescription.textContent = userData.about;
-      document.querySelector('.profile__image').style.backgroundImage = `url(${userData.avatar})`;
+      profileImage.style.backgroundImage = `url(${userData.avatar})`;
 
       cards.forEach(card => {
-        const cardElement = createCard(card, deleteCard, likeCard, processCardImage, userId);
+        const cardElement = createCard(card, deleteCard, likeCard, processCardImage, userId, openConfirmPopup);
         placesList.appendChild(cardElement);
       });
     })
