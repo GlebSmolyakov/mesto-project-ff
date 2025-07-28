@@ -5,7 +5,7 @@ const cardsTemplate = document.querySelector('#card-template').content;
 
 // @todo: Функция создания карточки
 
-export function createCard(location, deleteCard, likeCard, processCardImage, userId, openConfirmPopup) {
+export function createCard(location, removeCardElement, likeCard, processCardImage, userId, openConfirmPopup) {
     const cardsItem = cardsTemplate.querySelector('.card').cloneNode(true);
     const cardsImage = cardsItem.querySelector('.card__image');
     const cardsTitle = cardsItem.querySelector('.card__title');
@@ -36,7 +36,7 @@ export function createCard(location, deleteCard, likeCard, processCardImage, use
         deleteCards.remove();
     }else {
         deleteCards.addEventListener('click', () => {
-            deleteCard(location._id, cardsItem, openConfirmPopup);
+            openConfirmPopup(location._id, cardsItem);
         });
     }
 
@@ -47,8 +47,8 @@ export function createCard(location, deleteCard, likeCard, processCardImage, use
 // @todo: Функция удаления карточки и лайка карточки
 
 
-export function deleteCard(cardId, cardElement, openConfirmPopup) {
-    openConfirmPopup(cardId, cardElement);
+export function removeCardElement(cardElement) {
+    cardElement.remove();
 }
 
 export function likeCard(button, cardId, likesQuantity) {

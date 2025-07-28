@@ -1,5 +1,5 @@
 //@todo импорт модулей
-import {deleteCard, likeCard, createCard} from "./card";
+import {removeCardElement, likeCard, createCard} from "./card";
 import {openPopup, closePopup, closePopupsOverlay} from "./modal.js";
 import '../pages/index.css';
 import logo from '../images/logo.svg';
@@ -55,7 +55,6 @@ const popupNewAvatar = document.querySelector('.popup_type_new-avatar');
 
 const popupNewAvatarForm = document.forms['new-avatar'];
 const popupNewAvatarInput = popupNewAvatarForm.elements['link'];
-const popupNewAvatarError = popupNewAvatarForm.querySelector('.popup__error-place-link');
 const popupNewAvatarSubmit = popupNewAvatarForm.querySelector('.popup__button');
 const profileImage = document.querySelector('.profile__image');
 
@@ -157,7 +156,7 @@ function createNewCard(evt) {
 
   addNewCard(name, link)
       .then((newCardData) => {
-        const newCard = createCard(newCardData, deleteCard, likeCard, processCardImage, userId, openConfirmPopup);
+        const newCard = createCard(newCardData, removeCardElement, likeCard, processCardImage, userId, openConfirmPopup);
         placesList.prepend(newCard);
         popupFormAdd.reset();
         closePopup(popupAdd);
@@ -207,7 +206,7 @@ popupDeleteImg.addEventListener('submit', (evt) => {
   evt.preventDefault();
   apiDeleteCard(cardIdDelete)
       .then(() => {
-        cardElementDelete.remove();
+        removeCardElement(cardElementDelete);
         cardIdDelete = null;
         cardElementDelete = null;
         closePopup(popupDeleteImg);
@@ -228,7 +227,7 @@ Promise.all([getUserInfo(), getCard()])
       profileImage.style.backgroundImage = `url(${userData.avatar})`;
 
       cards.forEach(card => {
-        const cardElement = createCard(card, deleteCard, likeCard, processCardImage, userId, openConfirmPopup);
+        const cardElement = createCard(card, removeCardElement, likeCard, processCardImage, userId, openConfirmPopup);
         placesList.appendChild(cardElement);
       });
     })
@@ -271,3 +270,4 @@ newImageButton.addEventListener('click', () => {
   clearValidation(popupNewAvatarForm, validationConfig);
   openPopup(popupNewAvatar);
 });
+
